@@ -1,18 +1,14 @@
-// src/App.js
-import React from "react";
-import PublicIP from "./PublicIP"; // Import PublicIP component
-import Exhibit from "./Exhibit"; // Assuming you have an Exhibit component
+import React from 'react';
+import './App.css';
+import PublicLatency from './PublicLatency';  // Import the new component
 
 function App() {
   return (
     <div className="App">
-      <h1>Sextant - Public IP Viewer</h1>
-      <Exhibit>
-        <PublicIP type="v4" /> {/* Display IPv4 */}
-      </Exhibit>
-      <Exhibit>
-        <PublicIP type="v6" /> {/* Display IPv6 */}
-      </Exhibit>
+      <header className="App-header">
+        <h1>Pylon Latency</h1>
+        <PublicLatency />  {/* Display the PublicLatency component */}
+      </header>
     </div>
   );
 }
