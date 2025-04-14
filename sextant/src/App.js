@@ -1,24 +1,17 @@
 // src/App.js
-import React from 'react';
-import './App.css';
-import Banner from './Banner';
-import Exhibit from './Exhibit';
+import React from "react";
+import PublicIP from "./PublicIP"; // Import PublicIP component
+import Exhibit from "./Exhibit"; // Assuming you have an Exhibit component
 
 function App() {
   return (
     <div className="App">
-      <Banner />
-      
-      {/* Example Exhibit with some placeholder content */}
-      <Exhibit heading="User Networking Metrics">
-        <div className="metric">
-          <h3>Public IP</h3>
-          <p>192.168.1.10</p>
-        </div>
-        <div className="metric">
-          <h3>Latency</h3>
-          <p>30ms</p>
-        </div>
+      <h1>Sextant - Public IP Viewer</h1>
+      <Exhibit>
+        <PublicIP type="v4" /> {/* Display IPv4 */}
+      </Exhibit>
+      <Exhibit>
+        <PublicIP type="v6" /> {/* Display IPv6 */}
       </Exhibit>
     </div>
   );
