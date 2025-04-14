@@ -1,0 +1,18 @@
+/* src/Exhibit.css */
+.exhibit {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .exhibit h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .exhibit-content {
+    display: flex;
+    gap: 15px;
+  }
+  
