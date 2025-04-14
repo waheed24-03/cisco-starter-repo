@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react';
+// sextant/src/PublicLatency.js
+import React, { useState, useEffect } from 'react';
 
 const PublicLatency = () => {
   const [latency, setLatency] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
-
+  
   useEffect(() => {
+    // Create a WebSocket connection to the server
     const socket = new WebSocket('ws://localhost:55455');
 
     socket.onopen = () => {
-      setIsConnected(true);
+      console.log('Connected to WebSocket');
     };
 
     socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);  // Assuming the data is JSON
-      const timestamp = data.timestamp;  // Extract timestamp
-      const currentTime = Date.now();  // Current time in milliseconds
-      const calculatedLatency = currentTime - timestamp;
-      setLatency(calculatedLatency);
+      // The incoming message is expected to have a 'data' field containing a timestamp
+      const packetTimestamp = JSON.parse(event.data).timestamp;
+      
+      // Calculate the latency by subtracting the timestamp from the current time
+      const latency = Date.now() - packetTimestamp;
+
+      setLatency(latency); // Update the state with the new latency
     };
 
     socket.onerror = (error) => {
-      console.error('WebSocket Error: ', error);
+      console.error('WebSocket Error:', error);
     };
 
-    socket.onclose = () => {
-      setIsConnected(false);
-    };
-
-    // Clean up the WebSocket connection when the component unmounts
+    // Cleanup WebSocket connection on component unmount
     return () => {
       socket.close();
     };
@@ -36,10 +35,10 @@ const PublicLatency = () => {
   return (
     <div className="latency-container">
       <h2>Packet Latency</h2>
-      {isConnected ? (
-        <p>Latency: {latency ? `${latency} ms` : 'Waiting for packets...'}</p>
+      {latency !== null ? (
+        <p>Latency: {latency} ms</p>
       ) : (
-        <p>Connecting to Pylon...</p>
+        <p>Waiting for packet...</p>
       )}
     </div>
   );

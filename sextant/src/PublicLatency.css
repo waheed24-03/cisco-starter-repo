@@ -1,0 +1,19 @@
+/* sextant/src/PublicLatency.css */
+.latency-container {
+    padding: 20px;
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .latency-container h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+  }
+  
+  .latency-container p {
+    font-size: 1.2em;
+  }
+
+  
